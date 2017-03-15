@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!-- endbower -->
+        <!-- endbuild -->
+    </head>
+    <body ng-app="ngconfManagerApp" ng-cloak>
+        <!--[if lte IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <md-content>
+            <div ng-controller="MenuCtrl as ctrl" ng-cloak>
+                <md-toolbar class="md-menu-toolbar">
+                    <div layout="row">
+                        <md-toolbar-filler layout layout-align="center center">
+                            <md-icon md-svg-icon="call:chat"></md-icon>
+                        </md-toolbar-filler>
+                        <div>
+                            <h2 class="md-toolbar-tools">namespace</h2>
+                            <md-menu-bar>
+                                <md-menu>
+                                    <button ng-click="$mdMenu.open()">
+                                        项目
+                                    </button>
+                                    <md-menu-content>
+                                        <md-menu-item>
+                                            <md-button>新建</md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button>打开</md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                                <md-menu>
+                                    <button ng-click="$mdMenu.open()">
+                                        配置
+                                    </button>
+                                    <md-menu-content>
+                                        <md-menu-item>
+                                            <md-button>保存</md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button>重置</md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </md-menu-bar>
+                        </div>
+                    </div>
+                </md-toolbar>
+            </div>
+
+            <md-content class="page-container">
+                <div ng-view></div>
+            </md-content>
+        </md-content>
+
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-material/angular-material.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
