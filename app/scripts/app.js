@@ -38,3 +38,6 @@ angular
   .controller('MenuCtrl', function () {
       
   })
+  .controller('FileListCtrl', function () {
+
+  })
