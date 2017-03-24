@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('ngconfManagerApp', [
     'ngAnimate',
     'ngAria',
@@ -35,9 +35,6 @@ angular
         redirectTo: '/'
       });
   })
-  .controller('MenuCtrl', function () {
-      
-  })
   .controller('FileListCtrl', function () {
 
-  })
+  });
