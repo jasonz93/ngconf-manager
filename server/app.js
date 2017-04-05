@@ -4,7 +4,6 @@
 const Koa = require('koa');
 const app = new Koa();
 const Router = require('koa-router');
-const klaw = require('klaw');
 const path = require('path');
 const _ = require('lodash');
 const Promise = require('bluebird');
@@ -13,7 +12,7 @@ const serve = require('koa-static');
 const Etcd = require('etcd-cli');
 
 const config = {
-  etcd: 'http://127.0.0.1:2379',
+  etcd: 'http://192.168.99.100:2379',
   namespace: 'ngconf'
 };
 app.context.config = config;

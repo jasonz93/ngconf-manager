@@ -25,7 +25,7 @@
                             <md-icon md-svg-icon="call:chat"></md-icon>
                         </md-toolbar-filler>
                         <div>
-                            <h2 class="md-toolbar-tools">namespace</h2>
+                            <h2 class="md-toolbar-tools" ng-bind="project.name || '请打开一个项目'"></h2>
                             <md-menu-bar>
                                 <md-menu>
                                     <button ng-click="$mdMenu.open()">
@@ -59,35 +59,45 @@
                 </md-toolbar>
             </div>
 
-            <md-content class="page-container">
+            <div ng-controller="ProfileListCtrl">
+              <md-content class="page-container">
                 <div layout="row">
-                    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
-                        <md-toolbar class="md-theme-indigo">
-                            <h1 class="md-toolbar-tools">配置列表</h1>
-                        </md-toolbar>
-                        <md-content ng-controller="FileListCtrl">
-                            <md-tabs md-dynamic-height md-border-bottom>
-                                <md-tab label="development">
-                                    <div>
-                                        <md-subheader class="md-primary">文件夹</md-subheader>
-                                        <md-list layout-padding>
-                                            <md-list-item class="md-3-line">somefolder</md-list-item>
-                                        </md-list>
-                                    </div>
-                                    <div>
-                                        <md-subheader class="md-primary">文件</md-subheader>
-                                        <md-list layout-padding>
-                                            <md-list-item class="md-3-line">somefile</md-list-item>
-                                        </md-list>
-                                    </div>
-                                </md-tab>
-                                <md-tab label="production"></md-tab>
-                            </md-tabs>
-                        </md-content>
-                    </md-sidenav>
-                    <div ng-view></div>
+                  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
+                    <md-toolbar class="md-theme-indigo">
+                      <h1 class="md-toolbar-tools">配置列表</h1>
+                    </md-toolbar>
+                    <md-content>
+                      <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab md-on-select="selectProfile(profile)" ng-repeat="(profileName, profile) in profiles" label="{{profile.name}}">
+                          <div>
+                            <md-input-container>
+                              <label>版本</label>
+                              <md-select ng-model="version">
+                                <md-option ng-value="version" ng-repeat="version in profiles[profile.name].versions">{{version}}</md-option>
+                              </md-select>
+                            </md-input-container>
+                          </div>
+                          <div ng-show="dirs.length || currentPath !== '/'">
+                            <md-subheader class="md-primary">文件夹</md-subheader>
+                            <md-list layout-padding>
+                              <md-list-item ng-show="currentPath !== '/'" ng-click="selectPrevPath()" class="md-1-line">..</md-list-item>
+                              <md-list-item ng-click="selectDir(dir)" ng-repeat="dir in dirs" class="md-1-line">{{dir.name}}</md-list-item>
+                            </md-list>
+                          </div>
+                          <div ng-show="files.length">
+                            <md-subheader class="md-primary">文件</md-subheader>
+                            <md-list layout-padding>
+                              <md-list-item ng-repeat="file in files" class="md-1-line">{{file.name}}</md-list-item>
+                            </md-list>
+                          </div>
+                        </md-tab>
+                      </md-tabs>
+                    </md-content>
+                  </md-sidenav>
+                  <div ng-view></div>
                 </div>
-            </md-content>
+              </md-content>
+            </div>
         </md-content>
 
 
@@ -110,6 +120,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/menu.js"></script>
+        <script src="scripts/controllers/profile_list.js"></script>
         <script src="scripts/services/projects.js"></script>
         <!-- endbuild -->
     </body>

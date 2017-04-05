@@ -34,7 +34,4 @@ var app = angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .controller('FileListCtrl', function () {
-
   });

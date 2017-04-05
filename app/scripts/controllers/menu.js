@@ -3,7 +3,11 @@
  * Created by zhangsihao on 17-3-24.
  */
 angular.module('ngconfManagerApp')
-  .controller('MenuCtrl', function ($scope, $mdDialog) {
+  .controller('MenuCtrl', function ($scope, $rootScope, $mdDialog) {
+    $scope.$on('openProject', function (event, project) {
+      $scope.project = project;
+    })
+
     $scope.openProject = function (ev) {
       $mdDialog.show({
         controller: OpenProjectCtrl,
@@ -12,7 +16,11 @@ angular.module('ngconfManagerApp')
         targetEvent: ev,
         clickOutsideToClose: true
       }).then(function (answer) {
-        //TODO: Refresh
+        //Refresh
+        console.log(answer);
+        if (answer) {
+          $rootScope.$broadcast('openProject', answer);
+        }
       }).catch((err) => {
       });
     };
@@ -25,7 +33,7 @@ angular.module('ngconfManagerApp')
       });
 
       $scope.select = function (project) {
-
+        $mdDialog.hide(project);
       };
 
       $scope.cancel = function () {
